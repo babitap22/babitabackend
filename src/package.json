@@ -12,6 +12,10 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "underscore": "^1.13.6"
+    "lodash": "^4.17.21",
+    "lower-case": "^2.0.2",
+    "trim": "^1.0.1",
+    "underscore": "^1.13.6",
+    "upper-case": "^2.0.2"
   }
 }
