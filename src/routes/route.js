@@ -39,5 +39,79 @@ router.get('/student-details/:name', function(req, res){
     console.log('Name of the student is ', studentName)
     res.send('Dummy response')
 })
+/////////////////////////////////////////////////////////////////problem-1/////////////////////////////////////////////////////////////////////
+
+
+router.get('/movie',function(req , res){
+    let movie=['Rang de basanti','The shining','Lord of the rings','Batman begeain']
+    res.send(movie)
+})
+/////////////////////////////////////////////////////////////////////problem-2/////////////////////////////////////////////////////////////////////////
+router.get('/movie/:index',function(req , res){
+    let movie=['Rang de basanti','The shining','Lord of the rings','Batman begeain']
+    let index=req.params.index;
+    res.send(movie[index])
+
+})
+
+//////////////////////////////////////////////////////////////////problem-3/////////////////////////////////////////////////////////////////////////
+router.get('/movie/:index',function(req , req){
+    let movie=['Rang de basanti','The shining','Lord of the rings','Batman begeain']
+    let index=req.paramas.index;
+    (index> movie.length)? 'please enter valid Index' : res.send(movie[index])
+})
+////////////////////////////////////////////////////////////////problem-4//////////////////////////////////////////////////////////////////////////////////////
+router.get('/films',function(req,res){
+    let filmName=[
+         {
+        "id": 1,
+        "Name": "The Shining"
+       },
+        {
+        "id": 2,
+        "Name": "Incendies"
+       },
+        {
+        "id": 3,
+        "Name": "Rang de Basanti"
+       }, 
+       {
+        "id": 4,
+        "Name": "Finding Nemo"
+       }
+       ]
+       res.send(filmName)
+})
+///////////////////////////////////////////////////////////////////problem-5/////////////////////////////////////////////////////////////////////////
+router.get('/films/:filmId',function(req,res){
+    let filmName=[
+         {
+        "id": 1,
+        "Name": "The Shining"
+       },
+        {
+        "id": 2,
+        "Name": "Incendies"
+       },
+        {
+        "id": 3,
+        "Name": "Rang de Basanti"
+       }, 
+       {
+        "id": 4,
+        "Name": "Finding Nemo"
+       }
+    ]
+      
+    const filmId=req.params.filmId
+    if(filmId>filmName.length){
+        res.send('No movie exits with this Id')
+    }
+    else{
+        res.send(filmName[filmId])
+    }
+
+})
+
 
 module.exports = router;
