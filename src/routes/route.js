@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
- const bookModel= require("../models/bookModel.js")
+const bookModel= require("../models/bookModel.js")
 
 const BookController= require("../controllers/bookController")
 
@@ -13,8 +13,7 @@ router.post("/createBook",BookController.createBook)
 
  router.get("/getBooklist",BookController.bookList)
 
-
-router.post("/bookList",BookController.myBookInYear)
+router.post("/BookInYear",BookController.myBookInYear)
 
 router.post('/particularBook',BookController.getParticularBook)
 
