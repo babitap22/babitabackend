@@ -45,11 +45,6 @@ const deleteBooks= async function (req, res) {
 
 
 
-// CRUD OPERATIONS:
-// CREATE
-// READ
-// UPDATE
-// DELETE
 
 
 
