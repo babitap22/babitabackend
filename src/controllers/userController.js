@@ -1,40 +1,32 @@
 
 const userAuthor=require("../models/createAuthor")
 const userBook=require("../models/createBook")
-const NewPublisher=require("../models/bokModel")
-const newAuthor=require("../models/creatAuthor")
-
-
-
-
-
-
-
+const Author=require("../models/creatAuthor")
 
 ////////////////////1////////////////
 const createObject=async function(req,res){
     let data =req.body
-    let savedata=await userObject.create(data)
+    let savedata=await userAuthor.create(data)
     res.send({msg:savedata})
 }
 const createBooks=async function(req,res){
     let data=req.body
-    let savedata=await userAuthor.create(data)
+    let savedata=await userBook.create(data)
     res.send({msg:savedata})
 }
-//////////////////////////////2///////////////////
+// //////////////////////////////2//////////////////
 const getBooksbyChetanBhagat=async function(req,res){
     let data=await userAuthor.findOne({authorName:"Chetan Bhagat"}).select({_id:1})
     let savedata=await userBook.find({author_id:data}).select({name:1,price:1,_id:0,author_id:1})
     res.send({msg:savedata})
 }
-///////////////////////////////3///////////////
+// ///////////////////////////////3///////////////
 const findAuthor= async function(req,res){
-    let data =await userBook.findOneAndUpdate({name:"Two State"},{price:100},{new:true})
-    let savedata=await userAuthor.findOne({_id:data.author_id}).select({authorName:1,_id:0})
-    res.send({msg:savedata,price})
+    let data =await userBook.findOneAndUpdate({name:"Two states"},{$set:{price:100}},{new:true})
+     let savedata=await userAuthor.findOne({_id:data.author_id}).select({authorName:1,_id:0,price:1})
+    res.send({msg:savedata})
 }
-///////////////////////////////////////4///////
+// ///////////////////////////////////////4///////
 const author=async function(req,res){
     let data=await userBook.find({price:{$gte:50,$lte:100}}).select({author_id:1,_id:0})
     let arr=[];
@@ -46,12 +38,12 @@ const author=async function(req,res){
     }
     res.send({msg:arr.flat(Infinity)})
 }
-/////////////////////////////////////////////////////////rep////////////
+// /////////////////////////////////////////////////////////rep///////////
 const Allbooks=async function(req,res){
     let savedata=await find({}).populate([{path:'auther_id'},{path:'publish_id'}])
     res.send({msg:savedata})
 }
-/////////////////////////////////////////////////////////////////////rep//
+// /////////////////////////////////////////////////////////////////////rep//
 const putbooks=async function(req,res){
     let savedata=await Book.find({$or:[{name:"Penguin"},{name:"Harper Collins"}]}).select({_id:1})
     let arr=[]
@@ -65,9 +57,9 @@ const putbooks=async function(req,res){
 }
 
 
-/////////////////////////////////////////////////rep//////////////////////////
+// /////////////////////////////////////////////////rep//////////////////////////
 const updateBook=async function(req,res){
-    let savedata=await author.find({rating:{$gt:3.5}}).select({_id:1})
+    let savedata=await userAuthor.find({rating:{$gt:3.5}}).select({_id:1})
     let arr=[]
     for(let i=0;i<savedata.length;i++){
         const element=savedata[i];
@@ -79,8 +71,8 @@ const updateBook=async function(req,res){
 }
 
 
-module.exports.getBooksbyChetanBhagat=getBooksbyChetanBhagat
-module.exports.createObject=createObject
+ module.exports.getBooksbyChetanBhagat=getBooksbyChetanBhagat
+ module.exports.createObject=createObject
 module.exports.createBooks=createBooks
 module.exports.findAuthor=findAuthor
 module.exports.author=author
